@@ -1,43 +1,36 @@
-import express from "express";
+import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import router from "./routes/main";
 
 const PORT = process.env.PORT || 4000;
-
 const HOST = process.env.HOST || "http://localhost";
 
 const app = express();
 
-app.use(
-  cors({
-    origin: [process.env.FRONTENDURL || "http://localhost:5173"],
-  })
-);
+app.use(cors());
+
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next();
+});
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  try {
-    res.send("Seja Bem vindo a API do suporte!");
-  } catch (error) {
-    console.log("Erro ao Acessar Endpoint: ", error);
-  }
+app.get("/", (req: Request, res: Response) => {
+  res.send("Seja Bem vindo a API do suporte!");
 });
 
 app.use("/api", router);
 
-app.use((req, res) => {
-  try {
-    res.status(404);
-  } catch (error) {
-    console.log("Erro ao fazer requisição: ", error);
-  }
+app.use((req: Request, res: Response) => {
+  res.status(404).send("Endpoint não encontrado");
 });
 
-try {
-  app.listen(PORT, () => {
-    console.log(`Servidor rodando com sucesso ${HOST}:${PORT}`);
-  });
-} catch (error) {
-  console.log("Erro ao Iniciar Servidor: ", error);
-}
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  console.error(err.stack);
+  res.status(500).send("Erro interno do servidor");
+});
+
+app.listen(PORT, () => {
+  console.log(`Servidor rodando com sucesso ${HOST}:${PORT}`);
+});

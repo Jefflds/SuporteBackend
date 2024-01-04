@@ -11,6 +11,7 @@ import ApagarAnydeskController from "../controller/AnyDesk/ApagarAnydesk.control
 import { cadastrarAtendenteController } from "../controller/Atendente/CadastrarAtendente.controller";
 import { LerAtendenteController } from "../controller/Atendente/LerAtendente.controller";
 import ApagarAtendenteController from "../controller/Atendente/ApagarAtendente.controller";
+import  CadastrarAtendimentoController from "../controller/Atendimento/CadastrarAtendimento.controller";
 
 const router = express.Router();
 const cadastrarLojaController = new CadastrarLojaController();
@@ -25,6 +26,7 @@ const apagarAnydeskController = new ApagarAnydeskController();
 const CadastrarAtendenteController = new cadastrarAtendenteController();
 const lerAtendenteController = new LerAtendenteController();
 const apagarAtendenteController = new ApagarAtendenteController();
+const cadastrarAtendimentoController = new CadastrarAtendimentoController();
 
 router.post("/loja", cadastrarLojaController.cadastrarLoja);
 router.get("/loja", lerLojaController.LerLoja);
@@ -42,7 +44,7 @@ router.post("/atendente", CadastrarAtendenteController.cadastrarAtendente);
 router.get("/atendente", lerAtendenteController.LerAtendente);
 router.delete("/atendente/:id", apagarAtendenteController.apagarAtendente);
 
-router.post("/atendimento");
+router.post("/atendimento", cadastrarAtendimentoController.CadastrarAtendimento);
 router.get("/atendimento");
 router.delete("/atendimento/:id");
 
