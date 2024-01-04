@@ -8,6 +8,14 @@ const HOST = process.env.HOST || "http://localhost";
 
 const app = express();
 
+app.use(
+  cors({
+    origin: [process.env.FRONTENDURL || "http://localhost:5173"],
+  })
+);
+
+app.use(express.json());
+
 app.get("/", (req, res) => {
   try {
     res.send("Seja Bem vindo a API do suporte!");
@@ -16,14 +24,7 @@ app.get("/", (req, res) => {
   }
 });
 
-app.use(express.json());
 app.use("/api", router);
-
-app.use(
-  cors({
-    origin: [process.env.FRONTENDURL || "http://localhost:5173"],
-  })
-);
 
 app.use((req, res) => {
   try {
