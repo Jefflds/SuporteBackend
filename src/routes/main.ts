@@ -8,6 +8,9 @@ import ApagarClienteController from "../controller/Cliente/ApagarCliente.control
 import { cadastrarAnydeskController } from "../controller/AnyDesk/CadastrarAnydesk.controller";
 import { LerAnydeskController } from "../controller/AnyDesk/LerAnydesk.controller";
 import ApagarAnydeskController from "../controller/AnyDesk/ApagarAnydesk.controller";
+import { cadastrarAtendenteController } from "../controller/Atendente/CadastrarAtendente.controller";
+import { LerAtendenteController } from "../controller/Atendente/LerAtendente.controller";
+import ApagarAtendenteController from "../controller/Atendente/ApagarAtendente.controller";
 
 const router = express.Router();
 const cadastrarLojaController = new CadastrarLojaController();
@@ -19,6 +22,9 @@ const apagarClienteController = new ApagarClienteController();
 const CadastrarAnydeskController = new cadastrarAnydeskController();
 const lerAnydeskController = new LerAnydeskController();
 const apagarAnydeskController = new ApagarAnydeskController();
+const CadastrarAtendenteController = new cadastrarAtendenteController();
+const lerAtendenteController = new LerAtendenteController();
+const apagarAtendenteController = new ApagarAtendenteController();
 
 router.post("/loja", cadastrarLojaController.cadastrarLoja);
 router.get("/loja", lerLojaController.LerLoja);
@@ -32,9 +38,9 @@ router.post("/anydesk", CadastrarAnydeskController.cadastrarAnydesk);
 router.get("/anydesk", lerAnydeskController.LerAnydesk);
 router.delete("/anydesk/:id", apagarAnydeskController.apagarAnydesk);
 
-router.post("/atendente");
-router.get("/atendente");
-router.delete("/atendente/:id");
+router.post("/atendente", CadastrarAtendenteController.cadastrarAtendente);
+router.get("/atendente", lerAtendenteController.LerAtendente);
+router.delete("/atendente/:id", apagarAtendenteController.apagarAtendente);
 
 router.post("/atendimento");
 router.get("/atendimento");
