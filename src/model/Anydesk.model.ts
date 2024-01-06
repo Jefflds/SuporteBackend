@@ -2,25 +2,20 @@ import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database";
 import Loja from "./Loja.model";
 
-class Cliente extends Model {
-  public ID_Cliente?: number;
-  public Nome_Cliente?: string;
-  public Telefone_Cliente?: string;
-  public ID_Loja?: number;
+class Anydesk extends Model {
+  public ID_Anydesk?: number;
+  public Numero_Anydesk?: string;
+  public ID_Loja?: string;
 }
 
-Cliente.init(
+Anydesk.init(
   {
-    ID_Cliente: {
+    ID_Anydesk: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    Nome_Cliente: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    Telefone_Cliente: {
+    Numero_Anydesk: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -35,10 +30,10 @@ Cliente.init(
   },
   {
     sequelize,
-    modelName: "Cliente",
-    tableName: "Cliente",
+    modelName: "Anydesk",
+    tableName: "Anydesk",
     timestamps: false,
   }
 );
 
-export default Cliente;
+export default Anydesk;
