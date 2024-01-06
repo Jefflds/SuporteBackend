@@ -3,7 +3,7 @@ import cors from "cors";
 import router from "./routes/main";
 
 const PORT = process.env.PORT || 4000;
-const HOST = process.env.HOST || "http://localhost";
+
 
 const app = express();
 
@@ -27,5 +27,5 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor rodando com sucesso ${HOST}:${PORT}`);
+  console.log(`Servidor rodando com sucesso`);
 });
