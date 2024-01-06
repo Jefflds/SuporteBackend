@@ -54,6 +54,6 @@ router.delete("/atendente/:id", apagarAtendenteController.apagarAtendente);
 
 router.post("/atendimento", cadastrarAtendimentoController.CadastrarAtendimento);
 router.get("/atendimento", lerAtendimentoController.LerAtendimento);
-router.delete("/atendimento/:id"), apagarAtendimentoController.apagarAtendimento;
+router.delete("/atendimento/:id", apagarAtendimentoController.apagarAtendimento);
 
 export default router;
