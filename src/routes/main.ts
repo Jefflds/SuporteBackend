@@ -13,6 +13,7 @@ import { LerAtendenteController } from "../controller/Atendente/LerAtendente.con
 import ApagarAtendenteController from "../controller/Atendente/ApagarAtendente.controller";
 import  CadastrarAtendimentoController from "../controller/Atendimento/CadastrarAtendimento.controller";
 import { LerAtendimentoController } from "../controller/Atendimento/LerAtendimento.controller";
+import ApagarAtendimentoController from "../controller/Atendimento/ApagarAtendimento.controller";
 
 const router = express.Router();
 const cadastrarLojaController = new CadastrarLojaController();
@@ -29,6 +30,7 @@ const lerAtendenteController = new LerAtendenteController();
 const apagarAtendenteController = new ApagarAtendenteController();
 const cadastrarAtendimentoController = new CadastrarAtendimentoController();
 const lerAtendimentoController = new LerAtendimentoController();
+const apagarAtendimentoController = new ApagarAtendimentoController();
 
 router.post("/loja", cadastrarLojaController.cadastrarLoja);
 router.get("/loja", lerLojaController.LerLoja);
@@ -52,6 +54,6 @@ router.delete("/atendente/:id", apagarAtendenteController.apagarAtendente);
 
 router.post("/atendimento", cadastrarAtendimentoController.CadastrarAtendimento);
 router.get("/atendimento", lerAtendimentoController.LerAtendimento);
-router.delete("/atendimento/:id");
+router.delete("/atendimento/:id"), apagarAtendimentoController.apagarAtendimento;
 
 export default router;
