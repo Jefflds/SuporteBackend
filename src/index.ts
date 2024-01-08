@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import router from "./routes/main";
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
 const PORT = process.env.PORT || 4000;
 
@@ -15,6 +16,15 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   next();
 });
+
+app.use(
+  "/api",
+  createProxyMiddleware({
+    target: "https://suporte-backend.onrender.com",
+    changeOrigin: true,
+    pathRewrite: { "^/api": "" },
+  })
+);
 
 app.use(express.json());
 
