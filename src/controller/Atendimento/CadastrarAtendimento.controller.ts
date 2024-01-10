@@ -21,19 +21,6 @@ class CadastrarAtendimentoController {
         Categoria_Atendimento,
       } = req.body;
 
-      // if (
-      //   !ClienteIdentifier ||
-      //   !LojaIdentifier ||
-      //   !AnydeskIdentifier ||
-      //   !AtendenteIdentifier
-      // ) {
-      //   res.status(400).json({
-      //     error:
-      //       "ClienteIdentifier (nome ou ID do Cliente), LojaIdentifier (nome ou ID da Loja), AnydeskIdentifier (nome ou ID do Anydesk), AtendenteIdentifier (nome ou ID do Atendente) são obrigatórios",
-      //   });
-      //   return;
-      // }
-
       const cliente =
         await CadastrarAtendimentoController.findEntityByIdentifier(
           Cliente,
@@ -54,10 +41,10 @@ class CadastrarAtendimentoController {
           AtendenteIdentifier
         );
 
-      if (!cliente || !loja || !anydesk || !atendente) {
+      if (!cliente || !loja  || !atendente) {
         res
           .status(404)
-          .json({ error: "Cliente/Loja/Anydesk/Atendente não encontrados" });
+          .json({ error: "Cliente/Loja/Atendente não encontrados" });
         return;
       }
 

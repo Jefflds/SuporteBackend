@@ -27,6 +27,12 @@ export class LerClienteController {
         res.status(200).json(cliente);
       } else {
         const clientes = await Cliente.findAll();
+
+        if (clientes.length === 0) {
+          res.status(404).json({ error: "Nenhum Anydesk encontrado" });
+          return;
+        }
+        
         res.status(200).json(clientes);
       }
     } catch (error) {
